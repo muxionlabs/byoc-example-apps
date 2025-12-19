@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { AppCard } from '@/components/AppCard';
 import { AppHeader } from '@/components/AppHeader';
 import { FilterToolbar } from '@/components/FilterToolbar';
+import { GithubCorner } from "@/components/GithubCorner";
 import { PaginationControls } from '@/components/PaginationControls';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -100,6 +101,7 @@ export default function Home() {
       <div className="mx-auto w-full max-w-6xl px-6">
         <Separator className="mt-3 border-white/10" />
       </div>
+      <GithubCorner href={repoUrl} />
 
       <main className="mx-auto mt-5 flex max-w-6xl flex-col gap-6 px-6">
         <section className="glass-panel relative z-10 flex flex-col gap-3 overflow-visible p-3">

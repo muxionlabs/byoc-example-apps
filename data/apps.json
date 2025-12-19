@@ -2,7 +2,7 @@
   {
     "name": "Soldar",
     "tagline": "Solder AI blocks into live video and audio workflows, designed for real-time performance and effortless scale.",
-    "creator": "@rickstaa",
+    "creator": ["Muxion Labs", "@rickstaa"],
     "repo": "https://github.com/rickstaa/soldar",
     "website": "https://soldar.vercel.app/",
     "tags": ["AI", "Realtime", "Blocks"],

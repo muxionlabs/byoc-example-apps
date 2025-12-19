@@ -3,7 +3,7 @@ export type AppEntry = {
   tagline: string;
   repo?: string;
   website?: string;
-  creator?: string;
+  creator?: string | string[];
   tags: string[];
   logo?: string;
 };

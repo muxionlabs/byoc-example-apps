@@ -1,9 +1,13 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import type React from 'react';
 import { Link } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { AppEntry } from '@/data/types';
 
 const getHostname = (url?: string) => {
@@ -21,6 +25,16 @@ export function AppCard({ app }: { app: AppEntry }) {
   const creatorLabels = creators.map((creator) => creator.trim()).filter(Boolean);
   const creatorPills = creatorLabels.length > 0 ? creatorLabels : ['Community'];
   const primaryLink = app.website || app.repo;
+  const hasLogo = Boolean(app.logo);
+  const [logoStatus, setLogoStatus] = useState<'loading' | 'loaded' | 'error'>(
+    hasLogo ? 'loading' : 'error',
+  );
+  const showSkeleton = hasLogo && logoStatus === 'loading';
+  const showFallback = !hasLogo || logoStatus === 'error';
+
+  useEffect(() => {
+    setLogoStatus(hasLogo ? 'loading' : 'error');
+  }, [hasLogo]);
 
   const GithubIcon = () => (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
@@ -59,10 +73,25 @@ export function AppCard({ app }: { app: AppEntry }) {
       <CardHeader className="flex flex-row items-start gap-4 p-0">
         <div className="rounded-2xl border border-border/70 bg-secondary px-3 py-3">
           <Avatar className="h-12 w-12 rounded-xl">
-            <AvatarImage src={app.logo ?? ''} alt={`${app.name} logo`} className="rounded-xl" />
-            <AvatarFallback className="rounded-xl text-xs">
-              {app.name.slice(0, 2).toUpperCase()}
-            </AvatarFallback>
+            {showSkeleton ? (
+              <Skeleton className="absolute inset-0 h-full w-full rounded-xl bg-foreground/10 ring-1 ring-white/10" />
+            ) : null}
+            {hasLogo ? (
+              <AvatarImage
+                src={app.logo ?? ''}
+                alt={`${app.name} logo`}
+                className="rounded-xl"
+                onLoadingStatusChange={(status) => {
+                  if (status === 'loaded') setLogoStatus('loaded');
+                  if (status === 'error') setLogoStatus('error');
+                }}
+              />
+            ) : null}
+            {showFallback ? (
+              <AvatarFallback className="rounded-xl text-xs">
+                {app.name.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            ) : null}
           </Avatar>
         </div>
         <div className="space-y-1">

@@ -19,10 +19,19 @@ const escapeCell = (value) =>
     .replace(/\|/g, '\\|')
     .replace(/\n/g, ' ');
 
+const formatCreators = (creator) => {
+  if (Array.isArray(creator)) {
+    const cleaned = creator.map((entry) => String(entry).trim()).filter(Boolean);
+    return cleaned.length ? cleaned.join(', ') : 'Community';
+  }
+  const trimmed = String(creator ?? '').trim();
+  return trimmed || 'Community';
+};
+
 const rows = apps.map((app) => {
   const repo = app.repo ? `[Repo](${app.repo})` : '-';
   const live = app.website ? `[Live](${app.website})` : '-';
-  const creator = app.creator ?? 'Community';
+  const creator = formatCreators(app.creator);
   return [
     escapeCell(app.name),
     escapeCell(app.tagline),

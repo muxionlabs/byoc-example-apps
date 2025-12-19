@@ -17,7 +17,9 @@ const getHostname = (url?: string) => {
 
 export function AppCard({ app }: { app: AppEntry }) {
   const hostname = getHostname(app.website);
-  const creator = app.creator?.trim() || 'Community';
+  const creators = Array.isArray(app.creator) ? app.creator : app.creator ? [app.creator] : [];
+  const creatorLabels = creators.map((creator) => creator.trim()).filter(Boolean);
+  const creatorPills = creatorLabels.length > 0 ? creatorLabels : ['Community'];
   const primaryLink = app.website || app.repo;
 
   const GithubIcon = () => (
@@ -81,12 +83,17 @@ export function AppCard({ app }: { app: AppEntry }) {
       </CardContent>
 
       <CardFooter className="mt-auto flex items-center justify-between gap-3 p-0 text-sm">
-        <Badge
-          variant="secondary"
-          className="rounded-full bg-[#1d2f25] px-3 py-1 text-xs text-[#9ad3b8] hover:bg-[#1d2f25]"
-        >
-          By {creator}
-        </Badge>
+        <div className="flex flex-wrap gap-2">
+          {creatorPills.map((creator) => (
+            <Badge
+              key={`${app.name}-${creator}`}
+              variant="secondary"
+              className="rounded-full bg-[#1d2f25] px-3 py-1 text-xs text-[#9ad3b8] hover:bg-[#1d2f25]"
+            >
+              By {creator}
+            </Badge>
+          ))}
+        </div>
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
           {app.website ? (
             <a

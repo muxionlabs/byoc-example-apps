@@ -17,10 +17,15 @@ const body = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'BYOC Example Apps Showcase',
-  description: 'Community apps built on the BYOC workflow runtime.',
-  icons: {
-    icon: '/logos/Livepeer-Logo-Symbol-Light.svg',
+  title: "BYOC Example Apps Showcase",
+  description: "Community apps built on the BYOC workflow runtime.",
+  metadataBase: new URL("https://byoc-example-apps.vercel.app"),
+  openGraph: {
+    images: [{ url: "/social.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/social.png"],
   },
 };
 

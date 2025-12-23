@@ -2,11 +2,11 @@ import { LivepeerMark } from '@/components/LivepeerMark';
 import { Button } from '@/components/ui/button';
 
 interface AppHeaderProps {
-  repoUrl: string;
+  submitUrl: string;
   contributeUrl: string;
 }
 
-export function AppHeader({ repoUrl, contributeUrl }: AppHeaderProps) {
+export function AppHeader({ submitUrl, contributeUrl }: AppHeaderProps) {
   return (
     <header className="mx-auto flex max-w-6xl flex-col gap-3 px-6 pt-6 pb-1">
       <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto]">
@@ -33,7 +33,7 @@ export function AppHeader({ repoUrl, contributeUrl }: AppHeaderProps) {
         </div>
         <div className="flex flex-wrap items-center justify-start gap-2 md:justify-end md:self-center">
           <Button variant="default" className="h-10 rounded-full px-4 text-sm" asChild>
-            <a href={repoUrl} target="_blank" rel="noreferrer">
+            <a href={submitUrl} target="_blank" rel="noreferrer">
               Submit your app
             </a>
           </Button>

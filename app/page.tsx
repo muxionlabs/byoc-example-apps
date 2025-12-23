@@ -14,6 +14,7 @@ import type { AppEntry } from '@/data/types';
 
 const apps = appsData as AppEntry[];
 const repoUrl = 'https://github.com/muxionlabs/byoc-example-apps';
+const submitUrl = `${repoUrl}/edit/main/data/apps.json`;
 const contributeUrl = `${repoUrl}/blob/main/CONTRIBUTING.md`;
 
 export default function Home() {
@@ -97,7 +98,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen pb-9">
-      <AppHeader repoUrl={repoUrl} contributeUrl={contributeUrl} />
+      <AppHeader submitUrl={submitUrl} contributeUrl={contributeUrl} />
       <div className="mx-auto w-full max-w-6xl px-6">
         <Separator className="mt-3 border-white/10" />
       </div>

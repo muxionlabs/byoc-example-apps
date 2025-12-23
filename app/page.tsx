@@ -34,14 +34,25 @@ export default function Home() {
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase();
     const selectedLower = selectedCategories.map((c) => c.toLowerCase());
-    return apps.filter((app) => {
-      const haystack = `${app.name} ${app.tagline} ${app.tags.join(' ')}`.toLowerCase();
-      const matchesSearch = !query || haystack.includes(query);
-      const matchesCategories =
-        selectedCategories.length === 0 ||
-        app.tags.some((tag) => selectedLower.includes(tag.toLowerCase()));
-      return matchesSearch && matchesCategories;
-    });
+    return apps
+      .map((app, order) => ({ app, order }))
+      .filter(({ app }) => {
+        const haystack = `${app.name} ${app.tagline} ${app.tags.join(' ')}`.toLowerCase();
+        const matchesSearch = !query || haystack.includes(query);
+        const matchesCategories =
+          selectedCategories.length === 0 ||
+          app.tags.some((tag) => selectedLower.includes(tag.toLowerCase()));
+        return matchesSearch && matchesCategories;
+      })
+      .sort((a, b) => {
+        const aHasWebsite = Boolean(a.app.website);
+        const bHasWebsite = Boolean(b.app.website);
+        if (aHasWebsite !== bHasWebsite) {
+          return aHasWebsite ? -1 : 1;
+        }
+        return a.order - b.order;
+      })
+      .map(({ app }) => app);
   }, [search, selectedCategories]);
 
   const toggleCategory = (value: string) => {

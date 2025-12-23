@@ -31,14 +31,14 @@ The site is driven from `data/apps.json`. The table below is generated from the 
 ## Local development
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
-## Updating the README table
+## Updating the README tablepnps
 
 ```bash
-npm run update-readme
+pnpm run update-readme
 ```
 
 ## Notes

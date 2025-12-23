@@ -35,7 +35,7 @@ pnpm install
 pnpm run dev
 ```
 
-## Updating the README tablepnps
+## Updating the README table
 
 ```bash
 pnpm run update-readme

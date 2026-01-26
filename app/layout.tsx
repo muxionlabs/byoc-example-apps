@@ -31,7 +31,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${heading.variable} ${body.variable} dark`}>
+    // was getting hydration errors
+    <html
+      lang="en"
+      className={`${heading.variable} ${body.variable} dark`}
+      suppressHydrationWarning
+    >
       <body>{children}</body>
     </html>
   );

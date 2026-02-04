@@ -7,5 +7,21 @@
     "website": "https://soldar.vercel.app/",
     "tags": ["AI", "Realtime", "SaaS"],
     "logo": "https://github.com/rickstaa/soldar/blob/main/public/cube.png?raw=true"
+  },
+  {
+    "name": "Realtime Transcription",
+    "tagline": "Real-time video transcription pipeline that generates SRT subtitles and optionally integrates them back into the stream.",
+    "creator": ["@JJassonn69","Muxion Labs"],
+    "repo": "https://github.com/JJassonn69/project-transcript",
+    "tags": ["AI", "Realtime", "Transcription"],
+    "logo": "/logos/transcription.svg"
+  },
+  {
+    "name": "Video Understanding",
+    "tagline": "PyTrickle streaming server for google/gemma-3n-E4B-it multimodal understanding outputs using vLLM",
+    "creator": ["@JJassonn69","Muxion Labs"],
+    "repo": "https://github.com/JJassonn69/gemma3n-pytrickle-app",
+    "tags": ["AI", "Video Understanding", "Multimodal"],
+    "logo": "/logos/video-understanding.svg"
   }
 ]
